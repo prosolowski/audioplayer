@@ -28,7 +28,7 @@
           <svg v-if="audioPlaying" xmlns="http://www.w3.org/2000/svg" fill="#fff" width="24" height="24" viewBox="0 0 24 24"><path d="M11 22h-4v-20h4v20zm6-20h-4v20h4v-20z"/></svg>
           <svg v-else xmlns="http://www.w3.org/2000/svg" fill="#fff" width="24" height="24" viewBox="0 0 24 24"><path d="M3 22v-20l18 10-18 10z"/></svg>
         </button>
-          <div class="timer" style="--duration: 30;--size: 64;" :class="{'animation-paused': !audioPlaying}">
+          <div class="timer" :style="'--duration: '+songPlaying.duration+';--size: 64;'" :class="{'animation-paused': !audioPlaying}">
             <div class="mask" :class="{'animation-paused': !audioPlaying}"></div>
           </div>
         <button class="btn player__option__next"><svg xmlns="http://www.w3.org/2000/svg" fill="#fff" width="14" height="14" viewBox="0 0 24 24"><path d="M20 22v-20h2v20h-2zm-18 0l16-10-16-10v20z"/></svg></button>
@@ -57,7 +57,8 @@ export default {
   },
   created() {
     if(this.$route.params.song) {
-      this.songPlaying = this.$route.params.song
+      this.songPlaying = this.$route.params.song;
+      this.audioPlaying = true;
     }
   },
   methods: {

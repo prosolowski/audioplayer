@@ -65,15 +65,15 @@ export default {
                   favourite: false
               }, {
                   id: 7,
-                  title: "Nights Like This 2",
-                  author: "Icona Pop",
-                  duration: 204,
+                  title: "60 seconds song",
+                  author: "Fake Icona Pop",
+                  duration: 60,
                   favourite: false
               }, {
                   id: 8,
-                  title: "Nights Like This 3",
-                  author: "Icona Pop",
-                  duration: 204,
+                  title: "30 seconds song",
+                  author: "Fake Icona Pop",
+                  duration: 30,
                   favourite: false
               }]
       };
@@ -157,7 +157,7 @@ export default {
       border-bottom: none;
     }
     &__details {
-      grid-column: 1/2;
+      grid-column: 1/span 2;
       grid-row: 1/2;
       font-size: 0.8rem;
       color: #88858f;
@@ -167,7 +167,7 @@ export default {
       }
     }
     &__title {
-      grid-column: 1/2;
+      grid-column: 1/span 2;
       grid-row: 2/3;
       font-size: 1rem;
       color: #2f1a4b;
