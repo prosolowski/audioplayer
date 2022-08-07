@@ -11,7 +11,7 @@ export default {
 
 <template>
   <div id="app">
-    <AudioPlayer />
+    <router-view></router-view>
   </div>
 </template>
 

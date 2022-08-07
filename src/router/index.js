@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import PlayerView from '../views/PlayerView.vue'
+import PlaylistView from '../views/PlaylistView.vue'
 
 Vue.use(VueRouter)
 
@@ -16,10 +17,7 @@ const router = new VueRouter({
     {
       path: '/playlist',
       name: 'playlist',
-      // route level code-splitting
-      // this generates a separate chunk (Playlist.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('../views/PlaylistView.vue')
+      component: PlaylistView
     }
   ]
 })
