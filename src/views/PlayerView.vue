@@ -16,8 +16,8 @@
         </button>
       </div>
       <div class="player__info transparent-bg">
-        <div class="player__info__title">Icona Pop</div>
-        <div class="player__info__subtitle">Still Don't Know</div>
+        <div class="player__info__title">{{ songPlaying.author }}</div>
+        <div class="player__info__subtitle">{{ songPlaying.title }}</div>
       </div>
     </div>
     <div class="player__option">
@@ -39,6 +39,7 @@
 <script>
 
 export default {
+  props: ['songPlaying'],
   data() {
     return {
       audioPlaying: false

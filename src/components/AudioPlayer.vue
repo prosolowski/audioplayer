@@ -1,3 +1,12 @@
+<template>
+  <div class="audioplayer">
+    <div class="audioplayer__card">
+      <PlaylistView v-if="showPlaylist" @togglePlayer="togglePlayer" @playSong="playSong" />
+      <PlayerView v-else @togglePlayer="togglePlayer" :songPlaying="songPlaying" />
+    </div>
+  </div>
+</template>
+
 <script>
 import PlayerView from '../views/PlayerView.vue'
 import PlaylistView from '../views/PlaylistView.vue'
@@ -9,26 +18,21 @@ export default {
   },
   data() {
     return {
-      showPlaylist: false
+      showPlaylist: false,
+      songPlaying: {}
     }
   },
   methods: {
     togglePlayer(show) {
-      this.showPlaylist = show;
+      this.showPlaylist = show
+    },
+    playSong(song) {
+      this.songPlaying = song
     }
   }
 }
 
 </script>
-
-<template>
-  <div class="audioplayer">
-    <div class="audioplayer__card">
-      <PlaylistView v-if="showPlaylist" @togglePlayer="togglePlayer" />
-      <PlayerView v-else @togglePlayer="togglePlayer" />
-    </div>
-  </div>
-</template>
 
 <style lang="scss" scoped>
 .audioplayer {
