@@ -23,12 +23,35 @@
     <div class="player__option">
       <button class="btn player__option__share btn--bg-white"><svg xmlns="http://www.w3.org/2000/svg" fill="#60558f" width="14" height="14" viewBox="0 0 24 24"><path d="M5 7c2.761 0 5 2.239 5 5s-2.239 5-5 5-5-2.239-5-5 2.239-5 5-5zm11.122 12.065c-.073.301-.122.611-.122.935 0 2.209 1.791 4 4 4s4-1.791 4-4-1.791-4-4-4c-1.165 0-2.204.506-2.935 1.301l-5.488-2.927c-.23.636-.549 1.229-.943 1.764l5.488 2.927zm7.878-15.065c0-2.209-1.791-4-4-4s-4 1.791-4 4c0 .324.049.634.122.935l-5.488 2.927c.395.535.713 1.127.943 1.764l5.488-2.927c.731.795 1.77 1.301 2.935 1.301 2.209 0 4-1.791 4-4z"/></svg></button>
       <button class="btn player__option__previous"><svg xmlns="http://www.w3.org/2000/svg" fill="#fff" width="14" height="14" viewBox="0 0 24 24"><path d="M4 2v20h-2v-20h2zm18 0l-16 10 16 10v-20z"/></svg></button>
-      <button class="btn player__option__play"><svg xmlns="http://www.w3.org/2000/svg" fill="#fff" width="24" height="24" viewBox="0 0 24 24"><path d="M3 22v-20l18 10-18 10z"/></svg></button>
+      <button @click="playAudio()" class="btn player__option__play">
+        <svg v-if="audioPlaying" xmlns="http://www.w3.org/2000/svg" fill="#fff" width="24" height="24" viewBox="0 0 24 24"><path d="M11 22h-4v-20h4v20zm6-20h-4v20h4v-20z"/></svg>
+        <svg v-else xmlns="http://www.w3.org/2000/svg" fill="#fff" width="24" height="24" viewBox="0 0 24 24"><path d="M3 22v-20l18 10-18 10z"/></svg>
+      </button>
+        <div class="timer" style="--duration: 30;--size: 64;" :class="{'animation-paused': !audioPlaying}">
+          <div class="mask" :class="{'animation-paused': !audioPlaying}"></div>
+        </div>
       <button class="btn player__option__next"><svg xmlns="http://www.w3.org/2000/svg" fill="#fff" width="14" height="14" viewBox="0 0 24 24"><path d="M20 22v-20h2v20h-2zm-18 0l16-10-16-10v20z"/></svg></button>
       <button class="btn player__option__favourite btn--bg-white"><svg xmlns="http://www.w3.org/2000/svg" fill="#f00" width="14" height="14" viewBox="0 0 24 24"><path d="M12 4.435c-1.989-5.399-12-4.597-12 3.568 0 4.068 3.06 9.481 12 14.997 8.94-5.516 12-10.929 12-14.997 0-8.118-10-8.999-12-3.568z"/></svg></button>
     </div>
   </div>
 </template>
+
+<script>
+
+export default {
+  data() {
+    return {
+      audioPlaying: false
+    }
+  },
+  methods: {
+    playAudio() {
+      this.audioPlaying = !this.audioPlaying
+    }
+  }
+}
+
+</script>
 
 <style lang="scss" scoped>
 .player {
@@ -93,6 +116,8 @@
       &:nth-child(3) {
         width: 50px;
         height: 50px;
+        position: relative;
+        z-index: 2;
       }
       &--bg-white {
         background-color: #fff;
@@ -124,6 +149,54 @@
           }
         }
       }
+    }
+  }
+  .timer {
+    position: absolute;
+    background: -webkit-linear-gradient(left, #d6d7e1 50%, #fff 50%);
+    border-radius: 100%;
+    height: calc(var(--size) * 1px);
+    width: calc(var(--size) * 1px);
+    -webkit-animation: time calc(var(--duration) * 1s) steps(1000, start) infinite;
+    -webkit-mask: radial-gradient(transparent 50%,#000 50%);
+    mask: radial-gradient(transparent 50%,#000 50%);
+    animation-play-state: running;
+  }
+  .mask {
+    border-radius: 100% 0 0 100% / 50% 0 0 50%;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 50%;
+    -webkit-animation: mask calc(var(--duration) * 1s) steps(500, start) infinite;
+    -webkit-transform-origin: 100% 50%;
+    animation-play-state: running;
+  }
+  .animation-paused {
+    animation-play-state: paused;
+  }
+  @-webkit-keyframes time {
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes mask {
+    0% {
+      background: #fff;
+      -webkit-transform: rotate(0deg);
+    }
+    50% {
+      background: #fff;
+      -webkit-transform: rotate(-180deg);
+    }
+    50.01% {
+      background: #d6d7e1;
+      -webkit-transform: rotate(0deg);
+    }
+    100% {
+      background: #d6d7e1;
+      -webkit-transform: rotate(-180deg);
     }
   }
 }
