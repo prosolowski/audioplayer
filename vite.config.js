@@ -13,6 +13,7 @@ export default defineConfig({
       additionalLegacyPolyfills: ['regenerator-runtime/runtime']
     })
   ],
+  base: "/audioplayer/",
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
