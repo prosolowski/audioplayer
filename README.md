@@ -1,4 +1,4 @@
-# audioplayer
+# audioplayer -> [DEMO](https://prosolowski.github.io/audioplayer/)
 
 This template should help get you started developing with Vue 3 in Vite.
 
