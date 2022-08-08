@@ -6,7 +6,6 @@ export default {
     AudioPlayer
   }
 }
-
 </script>
 
 <template>
@@ -14,7 +13,3 @@ export default {
     <router-view></router-view>
   </div>
 </template>
-
-<style scoped>
-
-</style>
