@@ -46,19 +46,7 @@ export default {
   data() {
     return {
       audioPlaying: false,
-      songPlaying: {
-        id: 1,
-        title: "Still Don't Know",
-        author: "Icona Pop",
-        duration: 196,
-        favourite: false
-      }
-    }
-  },
-  created() {
-    if(this.$route.params.song) {
-      this.songPlaying = this.$route.params.song;
-      this.audioPlaying = true;
+      songPlaying: this.$store.getters.getSongPlaying
     }
   },
   methods: {
