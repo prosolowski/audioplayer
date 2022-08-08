@@ -38,7 +38,8 @@ export default {
     playSong(song) {
       this.$store.dispatch('setSong', song.id)
       this.$router.push({
-          name: "player"
+          name: "player",
+          params: { playSong: true }
       });
     }
   }

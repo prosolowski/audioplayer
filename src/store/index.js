@@ -64,13 +64,14 @@ const store = new Vuex.Store({
   },
   getters: {
     getSongPlaying(state) {
-      return state.songs.find(element => element.playing)
+      return state.songs.find(element => element.playing == true)
     }
   },
   mutations: {
     setSongPlaying(state, id) {
       state.songs.forEach(element => {
         if(element.id == id) element.playing = true
+        else element.playing = false
       })
     },
   },
