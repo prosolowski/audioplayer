@@ -41,7 +41,7 @@ const store = new Vuex.Store({
       playing: false
     }, {
       id: 6,
-      title: "Nights Like This",
+      title: "Nights Like This 2",
       author: "Icona Pop",
       duration: 204,
       favourite: false,
@@ -65,6 +65,9 @@ const store = new Vuex.Store({
   getters: {
     getSongPlaying(state) {
       return state.songs.find(element => element.playing == true)
+    },
+    getSongPlayingIndex(state, getters) {
+      return state.songs.indexOf(getters.getSongPlaying)
     }
   },
   mutations: {
