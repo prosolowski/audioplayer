@@ -20,6 +20,7 @@
           <div class="player__info__title">{{ songPlaying.author }}</div>
           <div class="player__info__subtitle">{{ songPlaying.title }}</div>
         </div>
+        <RangeSlider></RangeSlider>
       </div>
       <div class="player__option">
         <button class="btn player__option__share btn--bg-white">
@@ -48,9 +49,10 @@
 
 <script>
 import AudioPlayer from '../components/AudioPlayer.vue'
+import RangeSlider from '../components/RangeSlider.vue';
 
 export default {
-  components: { AudioPlayer },
+  components: { AudioPlayer, RangeSlider },
   data() {
     return {
       audioPlaying: false,
