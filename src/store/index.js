@@ -9,7 +9,7 @@ const store = new Vuex.Store({
       title: "Still Don't Know",
       author: "Icona Pop",
       duration: 196,
-      favourite: false,
+      favourite: true,
       playing: true
     }, {
       id: 2,
@@ -77,10 +77,18 @@ const store = new Vuex.Store({
         else element.playing = false
       })
     },
+    setSongFavourite(state, id) {
+      state.songs.forEach(element => {
+        if(element.id == id) element.favourite = !element.favourite
+      })
+    }
   },
   actions: {
     setSong({ commit }, id) {
       commit('setSongPlaying', id)
+    },
+    setFavouriteSong({ commit }, id) {
+      commit('setSongFavourite', id)
     }
   },
 })

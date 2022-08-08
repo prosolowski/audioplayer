@@ -24,7 +24,8 @@
               <img src="@/assets/shareIcon.svg" alt="" />
             </button>
             <button class="song__favourite btn--rounded">
-              <img src="@/assets/heartIcon.svg" alt="" />
+              <img v-if="song.favourite" src="@/assets/heartIcon.svg" alt="">
+              <img v-else src="@/assets/heartEmptyIcon.svg" alt="">
             </button>
           </li>
         </ul>

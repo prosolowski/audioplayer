@@ -39,8 +39,9 @@
         <button @click="nextSong()" class="btn player__option__next">
           <img src="@/assets/nextIcon.svg" alt="">
         </button>
-        <button class="btn player__option__favourite btn--bg-white">
-          <img src="@/assets/heartIcon.svg" alt="">
+        <button @click="addToFavourite()" class="btn player__option__favourite btn--bg-white">
+          <img v-if="songPlaying.favourite" src="@/assets/heartIcon.svg" alt="">
+          <img v-else src="@/assets/heartEmptyIcon.svg" alt="">
         </button>
       </div>
     </div>
@@ -68,10 +69,13 @@ export default {
   },
   methods: {
     playAudio() {
-      this.audioPlaying = !this.audioPlaying
+      this.audioPlaying = !this.audioPlaying;
     },
     showPlaylist() {
       this.$router.push('/playlist')
+    },
+    addToFavourite() {
+      this.$store.dispatch('setFavouriteSong', this.songPlaying.id);
     },
     prevSong() {
       if(this.songPlayingIndex > 0) {
